@@ -105,7 +105,7 @@ public class DbService : IDbService
             int artifactCount = (int) await command.ExecuteScalarAsync();
             if (artifactCount > 0)
             {
-                throw new InvalidOperationException($"An artifact with {input.Artifact.ArtifactId} already exists.");
+                throw new InvalidOperationException($"An artifact with id {input.Artifact.ArtifactId} already exists.");
             }
 
             //2 czy projekt o id juz istnieje
@@ -116,7 +116,7 @@ public class DbService : IDbService
             int projectCount = (int) await command.ExecuteScalarAsync();
             if (projectCount > 0)
             {
-                throw new InvalidOperationException($"An project with {input.Project.ProjectId} already exists.");
+                throw new InvalidOperationException($"An project with id {input.Project.ProjectId} already exists.");
             }
             
             //3 musimy sprawdzic czy instytut dla artifactu istnieje
@@ -127,7 +127,7 @@ public class DbService : IDbService
             int institutionId = (int) await command.ExecuteScalarAsync();
             if (institutionId == 0)
             {
-                throw new InvalidOperationException($"An institution with {input.Artifact.InsitutionId} does not exist.");
+                throw new InvalidOperationException($"An institution with id {input.Artifact.InsitutionId} does not exist.");
             }
 
             //4 wstawianie artifact

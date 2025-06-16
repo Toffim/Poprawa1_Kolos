@@ -10,11 +10,11 @@ namespace Poprawa1.Controllers;
 
 public class ProjectsController : ControllerBase
 {
-    private readonly IProjectService _iProjectService;
+    private readonly IDbService _iDbService;
 
-    public ProjectsController(IProjectService iProjectService)
+    public ProjectsController(IDbService iDbService)
     {
-        _iProjectService = iProjectService;
+        _iDbService = iDbService;
     }
 
     [HttpGet("{id}")]
@@ -22,7 +22,7 @@ public class ProjectsController : ControllerBase
     {
         try
         {
-            var project = await _iProjectService.GetProjectAsync(id);
+            var project = await _iDbService.GetProjectAsync(id);
             return Ok(project);
         }
         catch (ArgumentException ex)

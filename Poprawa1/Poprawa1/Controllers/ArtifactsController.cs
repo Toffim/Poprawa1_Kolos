@@ -10,11 +10,11 @@ namespace Poprawa1.Controllers;
 
 public class ArtifactsController : ControllerBase
 {
-    private readonly IProjectService _iProjectService;
+    private readonly IDbService _iDbService;
 
-    public ArtifactsController(IProjectService iProjectService)
+    public ArtifactsController(IDbService iDbService)
     {
-        _iProjectService = iProjectService;
+        _iDbService = iDbService;
     }
     
     [HttpPost]
@@ -23,7 +23,7 @@ public class ArtifactsController : ControllerBase
 
         try
         {
-            await _iProjectService.AddArtifactAndProjectAsync(artifact);
+            await _iDbService.AddArtifactAndProjectAsync(artifact);
 
         }
         catch (ArgumentException argEx)

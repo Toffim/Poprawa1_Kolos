@@ -3,11 +3,11 @@ using System.Data.Common;
 using Poprawa1.Models;
 using Microsoft.Data.SqlClient;
 
-public class ProjectService : IProjectService
+public class DbService : IDbService
 {
     private readonly IConfiguration _configuration;
 
-    public ProjectService(IConfiguration configuration)
+    public DbService(IConfiguration configuration)
     {
         _configuration = configuration;
     }

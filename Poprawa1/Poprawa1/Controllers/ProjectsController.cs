@@ -38,31 +38,4 @@ public class ProjectsController : ControllerBase
             return StatusCode(500, ex.Message);
         }
     }
-
-    [HttpPost]
-    public async Task<IActionResult> AddArtifactAsync([FromBody]InputDTO artifact)
-    {
-
-        try
-        {
-            await _iProjectService.AddArtifactAndProjectAsync(artifact);
-
-        }
-        catch (ArgumentException argEx)
-        {
-            return NotFound(argEx.Message);
-        }
-
-        catch (InvalidOperationException ioEx)
-        {
-            return Conflict(ioEx.Message);
-        }
-
-        catch (Exception ex)
-        {
-            return StatusCode(500, ex.Message);
-        }
-
-        return StatusCode(201, artifact);
-    }
 }

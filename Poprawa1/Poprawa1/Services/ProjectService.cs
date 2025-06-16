@@ -99,7 +99,7 @@ public class ProjectService : IProjectService
         {
             //1 czy artefakt o danym id juz istnieje
             command.Parameters.Clear();
-            command.CommandText = "SELECT count(*) FROM Artifact where ID = @ArtifactId;";
+            command.CommandText = "SELECT count(*) FROM Artifact where ArtifactId = @ArtifactId;";
             command.Parameters.AddWithValue("@ArtifactId", input.Artifact.ArtifactId);
 
             int artifactCount = (int) await command.ExecuteScalarAsync();
@@ -110,7 +110,7 @@ public class ProjectService : IProjectService
 
             //2 czy projekt o id juz istnieje
             command.Parameters.Clear();
-            command.CommandText = "SELECT count(*) FROM Preservation_Project where ID = @PRId;";
+            command.CommandText = "SELECT count(*) FROM Preservation_Project where ProjectId = @PRId;";
             command.Parameters.AddWithValue("@PRId", input.Project.ProjectId);
 
             int projectCount = (int) await command.ExecuteScalarAsync();
@@ -121,7 +121,7 @@ public class ProjectService : IProjectService
             
             //3 musimy sprawdzic czy instytut dla artifactu istnieje
             command.Parameters.Clear();
-            command.CommandText = "SELECT count(*) FROM Institution where ID = @InstId;";
+            command.CommandText = "SELECT count(*) FROM Institution where InstitutionId = @InstId;";
             command.Parameters.AddWithValue("@InstId", input.Artifact.InsitutionId);
 
             int institutionId = (int) await command.ExecuteScalarAsync();

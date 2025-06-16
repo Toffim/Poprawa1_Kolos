@@ -155,7 +155,7 @@ public class DbService : IDbService
             command.Parameters.AddWithValue("@ProjectId", input.Project.ProjectId);
             command.Parameters.AddWithValue("@ArtifactId", input.Artifact.ArtifactId);
             command.Parameters.AddWithValue("@StartDate", input.Project.StartDate);
-            command.Parameters.AddWithValue("@EndDate", input.Project.EndDate == null ? input.Project.EndDate : DBNull.Value);
+            command.Parameters.AddWithValue("@EndDate", input.Project.EndDate != null ? input.Project.EndDate : DBNull.Value);
             command.Parameters.AddWithValue("@Objective", input.Project.Objective);
 
             try

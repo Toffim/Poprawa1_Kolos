@@ -122,12 +122,12 @@ public class DbService : IDbService
             //3 musimy sprawdzic czy instytut dla artifactu istnieje
             command.Parameters.Clear();
             command.CommandText = "SELECT count(*) FROM Institution where InstitutionId = @InstId;";
-            command.Parameters.AddWithValue("@InstId", input.Artifact.InsitutionId);
+            command.Parameters.AddWithValue("@InstId", input.Artifact.InstitutionId);
 
             int institutionId = (int) await command.ExecuteScalarAsync();
             if (institutionId == 0)
             {
-                throw new InvalidOperationException($"An institution with id {input.Artifact.InsitutionId} does not exist.");
+                throw new InvalidOperationException($"An institution with id {input.Artifact.InstitutionId} does not exist.");
             }
 
             //4 wstawianie artifact
@@ -137,7 +137,7 @@ public class DbService : IDbService
             command.Parameters.AddWithValue("@ArtifactId", input.Artifact.ArtifactId);
             command.Parameters.AddWithValue("@Name", input.Artifact.Name);
             command.Parameters.AddWithValue("@OriginDate", input.Artifact.OriginDate);
-            command.Parameters.AddWithValue("@InstitutionId", input.Artifact.InsitutionId);
+            command.Parameters.AddWithValue("@InstitutionId", input.Artifact.InstitutionId);
 
             try
             {
@@ -155,7 +155,7 @@ public class DbService : IDbService
             command.Parameters.AddWithValue("@ProjectId", input.Project.ProjectId);
             command.Parameters.AddWithValue("@ArtifactId", input.Artifact.ArtifactId);
             command.Parameters.AddWithValue("@StartDate", input.Project.StartDate);
-            command.Parameters.AddWithValue("@EndDate", input.Project.EndDate);
+            command.Parameters.AddWithValue("@EndDate", input.Project.EndDate == null ? input.Project.EndDate : DBNull.Value);
             command.Parameters.AddWithValue("@Objective", input.Project.Objective);
 
             try

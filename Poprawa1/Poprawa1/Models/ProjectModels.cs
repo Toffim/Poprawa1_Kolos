@@ -87,7 +87,7 @@ public class InputArtifactDTO
     public int ArtifactId { get; set; }
     public String Name { get; set; }
     public DateTime OriginDate { get; set; }
-    public int InsitutionId { get; set; }
+    public int InstitutionId { get; set; }
 }
 
 public class InputDTO

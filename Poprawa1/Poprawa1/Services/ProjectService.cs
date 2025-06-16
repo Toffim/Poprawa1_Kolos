@@ -45,12 +45,13 @@ public class ProjectService : IProjectService
         {
             if (projectDTO is null)
             {
+                int endDate = reader.GetOrdinal("EndDate");
                 projectDTO = new ProjectDTO()
                 {
                     ProjectId = reader.GetInt32(reader.GetOrdinal("ProjectId")),
                     Objective = reader.GetString(reader.GetOrdinal("Objective")),
                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")),
-                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")),
+                    EndDate = reader.IsDBNull(endDate) ? null : reader.GetDateTime(reader.GetOrdinal("EndDate"))
                 };
             }
 
